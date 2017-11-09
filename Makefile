@@ -1,7 +1,7 @@
 CXX      := g++-5
-CXXFLAGS :=  -pthread -fno-strict-aliasing -std=c++1y -pedantic -Wall 
+CXXFLAGS :=  -pthread -fno-strict-aliasing -std=c++1y -pedantic -Wall `pkg-config --cflags sdl`
 LDFLAGS  := -L/opt/local/lib
-LIBS     := -lm 
+LIBS     := -lm -lboost_iostreams `pkg-config --libs sdl` -lboost_filesystem -lboost_system -lboost_locale
 .PHONY: all release debian-release info debug clean debian-clean distclean 
 DESTDIR := /
 PREFIX := /usr/local

@@ -1,0 +1,2 @@
+filesystem_sdl.o: filesystem_sdl.cpp filesystem.hpp exceptions.hpp \
+ global.hpp log.hpp
