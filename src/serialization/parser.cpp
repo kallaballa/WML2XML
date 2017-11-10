@@ -813,6 +813,7 @@ void print_attr(config& cfg) {
 		v = attr.second.str();
 		encode_xml_attr_val(v);
 		key = attr.first;
+		std::cerr << key << std::endl;
 		encode_xml_attr_key(key);
 		std::cout << key << "=\"" << v << "\" ";
 	}
@@ -825,7 +826,7 @@ void to_xml(config& cfg) {
 		key = child.key;
 		encode_xml_attr_key(key);
 		std::cout << '<' << key << ' ';
-		print_attr(cfg);
+		print_attr(cfg.child(child.key));
 		std::cout << '>' << std::endl;
 		to_xml(cfg.child(child.key));
 		std::cout << "</"  << key << '>' << std::endl;
