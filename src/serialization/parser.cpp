@@ -33,6 +33,7 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/iostreams/filter/bzip2.hpp>
 #include <boost/iostreams/filtering_stream.hpp>
+#include <boost/algorithm/string/replace.hpp>
 
 #if defined(_MSC_VER)
 #pragma warning(push)
@@ -777,10 +778,10 @@ void write_bz2(std::ostream& out, configr_of const& cfg)
 void encode_xml_attr_key(std::string& data) {
 	if(isdigit(data.at(0)))
 		data = "n" + data;
-/*	b::replace_all(data, " ", "");
-	b::replace_all(data, "\"", "");
-	b::replace_all(data, "*", "");
-	b::replace_all(data, "<", "");*/
+	boost::replace_all(data, " ", "");
+	boost::replace_all(data, "\"", "");
+	boost::replace_all(data, "*", "");
+	boost::replace_all(data, "<", "");
 }
 
 void encode_xml_attr_val(std::string& data) {
@@ -819,14 +820,15 @@ void print_attr(config& cfg) {
 
 void to_xml(config& cfg) {
 	std::string key;
-	std::string v;
 
 	for(const auto& child : cfg.all_children_range()) {
-		std::cout << '<' << child.key << ' ';
+		key = child.key;
+		encode_xml_attr_key(key);
+		std::cout << '<' << key << ' ';
 		print_attr(cfg);
-		std::cout << '>';
+		std::cout << '>' << std::endl;
 		to_xml(cfg.child(child.key));
-		std::cout << "</"  << child.key << '>';
+		std::cout << "</"  << key << '>' << std::endl;
 	}
 }
 
@@ -839,5 +841,5 @@ int main(int argc, char* argv[]) {
 	print_attr(cfg);
 	std::cout << '>';
 	to_xml(cfg);
-	std::cout << "</root>";
+	std::cout << "</root>" << std::endl;
 }
