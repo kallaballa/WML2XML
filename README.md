@@ -3,6 +3,7 @@ wml2xml is a conversion tool for "Battle for Wesnoth" WML (replays and scenarios
 
 #### Build
 Simply type:
+
     make
 
 #### Usage
