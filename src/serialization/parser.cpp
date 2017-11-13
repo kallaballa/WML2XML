@@ -833,10 +833,25 @@ void to_xml(config& cfg) {
 }
 
 int main(int argc, char* argv[]) {
-  config cfg;
-  std::ifstream ifs(argv[1]);
-  read(cfg, ifs, NULL);
+	config cfg;
 
+	if(argc == 2) {
+		std::cerr << "Reading from file: " << argv[1] << std::endl;
+		std::ifstream ifs(argv[1]);
+		if(ifs.good())
+			read(cfg, ifs, NULL);
+		else {
+			std::cerr << "Error: file not readable: " << argv[1] << std::endl;
+			exit(2);
+		}
+	} else if(argc == 1) {
+		std::cerr << "Reading from stdin" << std::endl;
+		std::ifstream ifs("/dev/stdin");
+		read(cfg, ifs, NULL);
+	} else {
+		std::cerr << "Usage: wml2xml <wml-file>" << std::endl;
+		exit(1);
+	}
 	std::cout << "<root ";
 	print_attr(cfg);
 	std::cout << '>';
