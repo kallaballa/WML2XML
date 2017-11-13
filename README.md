@@ -7,4 +7,4 @@ Simply type:
     make
 
 #### Usage
-The tool takes a WML files as argument. When called without argument it reads the WML from standard input.
+The tool takes a WML file as argument and outputs XML on standard output. When called without argument it reads the WML from standard input.
