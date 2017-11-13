@@ -1,4 +1,4 @@
-CXX      := g++-5
+CXX      := g++
 CXXFLAGS :=  -pthread -fno-strict-aliasing -std=c++1y -pedantic -Wall `pkg-config --cflags sdl`
 LDFLAGS  := -L/opt/local/lib
 LIBS     := -lm -lboost_iostreams `pkg-config --libs sdl` -lboost_filesystem -lboost_system -lboost_locale
