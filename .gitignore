@@ -1,0 +1,7 @@
+*.dep
+*.o
+*.gch
+src/wml2xml
+.cproject
+.project
+.settings/
