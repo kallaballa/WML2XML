@@ -2,6 +2,8 @@
 wml2xml is a conversion tool for "Battle for Wesnoth" WML (replays and scenarios) files. It converts the WML files to XML.
 
 #### Build
+Install dependencies: sdl, boost_iostreams, boost_filesystem, boost_system, boost_locale
+
 Simply type:
 
     make
